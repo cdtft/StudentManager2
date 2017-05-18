@@ -8,6 +8,7 @@ import com.biz.std.repository.SubjectRepository;
 import com.biz.std.service.SubjectService;
 import com.biz.std.util.Po2VoUtil;
 import com.biz.std.vo.SubjectFormVo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -45,8 +46,10 @@ public class SubjectServiceImpl implements SubjectService {
                 if(objScore.getScore() != null){
                     totalScore += objScore.getScore();
                 }
-                String studentName = objScore.getStudent().getName();
-                studentNameList.add(studentName);
+                if(objScore.getStudent()!=null) {
+                    String studentName = objScore.getStudent().getName();
+                    studentNameList.add(studentName);
+                }
             }
             int avg = 0;
             if(scoreList.size() != 0) {
